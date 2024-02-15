@@ -25,7 +25,8 @@ class Repository(ABC):
 
         data: данные для создания записи
         """
-        return self.db_engine.insert(table=self.table, data=data)
+        with DatabaseHandler() as db:
+            return db.insert(table=self.table, data=data)
 
     def read(self, filters: tuple = (), limit: int = 100, offset: int = 0):
         """Чтение из таблицы
@@ -35,7 +36,8 @@ class Repository(ABC):
             limit: ограничение по кол-ву записей
             offset: отступ
         """
-        return self.db_engine.select(table=self.table, filters=filters, limit=limit, offset=offset)
+        with DatabaseHandler() as db:
+            return db.select(table=self.table, filters=filters, limit=limit, offset=offset)
 
     def update(self, id: int, data: dict):
         """Изменение объекта
@@ -44,8 +46,8 @@ class Repository(ABC):
             id: id объекта
             data: новые данные объекта
         """
-
-        return self.db_engine.update(table=self.table, filters=(self.table.id == id,), data=data)
+        with DatabaseHandler() as db:
+            return db.update(table=self.table, filters=(self.table.id == id,), data=data)
 
     def delete(self, filters: tuple):
         """Удаление данных
@@ -53,4 +55,5 @@ class Repository(ABC):
         Args:
             filters: фильтр для выборки данных
         """
-        self.db_engine.delete(table=self.table, filters=filters)
+        with DatabaseHandler() as db:
+            return db.delete(table=self.table, filters=filters)
