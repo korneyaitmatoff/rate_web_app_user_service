@@ -60,6 +60,13 @@ app.register_routes([
                 "description": "Верификация данных аутентификации", "methods": ['POST'],
                 "endpoint": user_service.auth
             },
+            {
+                "path": "/pp/{user_id}",
+                "responses": {400: {"description": "Bad request"}},
+                "description": "Получение данных профиля пользователя", "methods": ['GET'],
+                "endpoint": user_service.get_person_profile_data
+
+            }
         ]
     ).get_router(),
 ])

@@ -1,3 +1,5 @@
+from api.comment_api import CommentApi
+from api.site_api import SiteApi
 from src.services.service import Service
 from src.repositories.repository import Repository
 from src.schemas.user import User, AuthUser, UserInput
@@ -33,3 +35,9 @@ class UserService(Service):
             )
         )
         return data[0].id if data else -1
+
+    def get_person_profile_data(self, user_id: int):
+        """Получение данных профиля пользователя"""
+        data = self.read(filters=(self.repository.table.id == user_id,))[0]
+        return {'user': data, 'comments': CommentApi().get_comments_by_user_id(user_id=data.id),
+                'sites': SiteApi().get_sites_by_user_id(user_id=data.id)}

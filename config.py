@@ -11,4 +11,5 @@ DB_PORT = os.environ.get("DB_PORT")
 DB_NAME = os.environ.get("DB_NAME")
 
 API_HOST = os.environ.get("API_HOST")
-API_PORT = os.environ.get("DB_NAME")
+API_SITE_PORT = os.environ.get("API_SITE_PORT")
+API_COMMENT_PORT = os.environ.get("API_COMMENT_PORT")
