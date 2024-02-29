@@ -61,7 +61,7 @@ app.register_routes([
                 "endpoint": user_service.auth
             },
             {
-                "path": "/pp/{user_id}",
+                "path": "/pp/{login}",
                 "responses": {400: {"description": "Bad request"}},
                 "description": "Получение данных профиля пользователя", "methods": ['GET'],
                 "endpoint": user_service.get_person_profile_data

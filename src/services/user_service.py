@@ -36,8 +36,8 @@ class UserService(Service):
         )
         return data[0].id if data else -1
 
-    def get_person_profile_data(self, user_id: int):
+    def get_person_profile_data(self, login: str):
         """Получение данных профиля пользователя"""
-        data = self.read(filters=(self.repository.table.id == user_id,))[0]
+        data = self.read(filters=(self.repository.table.login == login,))[0]
         return {'user': data, 'comments': CommentApi().get_comments_by_user_id(user_id=data.id),
                 'sites': SiteApi().get_sites_by_user_id(user_id=data.id)}
