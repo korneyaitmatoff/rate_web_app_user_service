@@ -66,6 +66,13 @@ app.register_routes([
                 "description": "Получение данных профиля пользователя", "methods": ['GET'],
                 "endpoint": user_service.get_person_profile_data
 
+            },
+            {
+                "path": "/user/login/{login}",
+                "responses": {400: {"description": "Bad request"}},
+                "description": "Получение данных пользователя по его логину", "methods": ['GET'],
+                "endpoint": user_service.get_user_by_login
+
             }
         ]
     ).get_router(),

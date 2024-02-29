@@ -41,3 +41,6 @@ class UserService(Service):
         data = self.read(filters=(self.repository.table.login == login,))[0]
         return {'user': data, 'comments': CommentApi().get_comments_by_user_id(user_id=data.id),
                 'sites': SiteApi().get_sites_by_user_id(user_id=data.id)}
+
+    def get_user_by_login(self, login: str) -> User:
+        return self.read(filters=(self.repository.table.login == login,))[0]
