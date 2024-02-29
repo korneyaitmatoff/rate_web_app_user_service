@@ -68,7 +68,7 @@ app.register_routes([
 
             },
             {
-                "path": "/user/login/{login}",
+                "path": "/login/{login}",
                 "responses": {400: {"description": "Bad request"}},
                 "description": "Получение данных пользователя по его логину", "methods": ['GET'],
                 "endpoint": user_service.get_user_by_login
